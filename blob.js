@@ -87,7 +87,7 @@ function initVideoElement(video)
     };
 
     function togglePlay() {
-      videoObjects[0].autoplay = true;
+      videoObjects[0].autoplay = true; 
       if (video.paused || video.ended) {
         video.play();
         this.style.display="none"
