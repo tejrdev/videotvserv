@@ -4,34 +4,55 @@ html {
 
 body {
   margin: 0 auto;
-  max-width: 800px;
 }
+#videoContainer video{
+    width: 100%;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
 
-header, footer {
-  background-color: green;
-  color: white;
-  line-height: 100px;
-  padding: 0 20px;
-}
 
-article {
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid black;
-  background-color: #eee;
-}
 
-h2 {
-  margin: 10px 0;
-}
+    .plybtn{
+      background: none;
+      color: #fff;
+      font-weight: 600;
+      font-size: 70px;
+      padding: 6px 0;
+      text-transform: uppercase;
+      margin: auto;
+      cursor: pointer;
+      transition: 0.5s all;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      max-width: 50px;
+      border-radius: 10px;
+      border: none;
+      opacity: 0.6;
+      height: 90px;
+    }
 
-video {
-  margin: 0 auto;
-  border: 1px solid black;
-  display: block;
-}
+    .plybtn:hover{
+      opacity: 1;
+    }
 
-button {
-  display: block;
-  margin-top: 10px;
-}
+    #output{
+      font-size: 0;
+      height: 0;
+      display: block;
+      width: 0;
+    }
+
+    #videoContainer{
+      position: relative;
+      height: calc(100vh - 23px);
+      width: calc(100vw);
+      overflow: hidden;
+    }

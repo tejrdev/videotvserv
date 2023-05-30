@@ -47,7 +47,7 @@ videoObjects[1].inx = 1;
 initVideoElement(videoObjects[0]);
 initVideoElement(videoObjects[1]);
 
-videoObjects[0].autoplay = true;
+//videoObjects[0].autoplay = true;
 //videoObjects[0].src = vidSources[nextActiveVideo].name;
 videoContainer.appendChild(videoObjects[0]);
 
@@ -87,6 +87,7 @@ function initVideoElement(video)
     };
 
     function togglePlay() {
+      videoObjects[0].autoplay = true;
       if (video.paused || video.ended) {
         video.play();
         this.style.display="none"
@@ -261,3 +262,4 @@ if('serviceWorker' in navigator) {
     .register('./sw.js')
     .then(() => console.log('Service Worker Registered'));
 }
+
