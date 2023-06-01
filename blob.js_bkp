@@ -62,7 +62,7 @@ videoContainer.appendChild(videoObjects[0]);
 videoObjects[1].style.display = 'none';
 videoContainer.appendChild(videoObjects[1]);
 
-        //console.log(vidSourcesurl)
+        console.log(vidSourcesurl)
 function initVideoElement(video)
 {
     video.playsinline = true;
@@ -108,26 +108,19 @@ function initVideoElement(video)
 
     document.querySelector('.plybtn').addEventListener("click", togglePlay);
 }
-let vidSourcesinfo;
-async function logJSONData() {
-      let vidSourcesjson = await fetch('https://tejrdev.github.io/api/video.json')
-      vidSourcesinfo = await vidSourcesjson.json();
-      
+
+
 
 // Create constants
 const section = document.querySelector('section');
-/*const videos = [
+const videos = [
   { 'name' : 'crystal' },
   { 'name' : 'elf' },
   { 'name' : 'frog' },
   { 'name' : 'monster' },
   { 'name' : 'pig' },
   { 'name' : 'rabbit' }
-];*/
-
- const videos = vidSourcesinfo;
-      console.log(videos);
-
+];
 /*const videos = [   
         { 'name' : 'crystal' },
         { 'name' : 'SampleVideo_1280x720_1mb' },
@@ -175,11 +168,11 @@ function fetchVideoFromNetwork(video) {
   console.log('fetching videos from network');
   // Fetch the MP4 and WebM versions of the video using the fetch() function,
   // then expose their response bodies as blobs
-  const mp4Blob = fetch(`${video.name}`).then(response => response.blob());
-  //const webmBlob = fetch(`videos/${video.name}.webm`).then(response => response.blob());
+  const mp4Blob = fetch(`videos/${video.name}.mp4`).then(response => response.blob());
+  const webmBlob = fetch(`videos/${video.name}.webm`).then(response => response.blob());
 
   // Only run the next code when both promises have fulfilled
-  Promise.all([mp4Blob]).then(values => {
+  Promise.all([mp4Blob, webmBlob]).then(values => {
     // display the video fetched from the network with displayVideo()
     displayVideo(values[0], values[1], video.name);
     // store it in the IDB using storeVideo()
@@ -209,7 +202,7 @@ function storeVideo(mp4Blob, webmBlob, name) {
 function displayVideo(mp4Blob, webmBlob, title) {
   // Create object URLs out of the blobs
   const mp4URL = URL.createObjectURL(mp4Blob);
-  //const webmURL = URL.createObjectURL(webmBlob);
+  const webmURL = URL.createObjectURL(webmBlob);
 
   // Create DOM elements to embed video in the page
   const article = document.createElement('article');
@@ -221,8 +214,8 @@ function displayVideo(mp4Blob, webmBlob, title) {
   source1.src = mp4URL;
   source1.type = 'video/mp4';
   const source2 = document.createElement('source');
-  //source2.src = webmURL;
-  //source2.type = 'video/webm';
+  source2.src = webmURL;
+  source2.type = 'video/webm';
 
 
   videoObjects[0].src = mp4URL;
@@ -236,8 +229,6 @@ function displayVideo(mp4Blob, webmBlob, title) {
   //video.appendChild(source1);
   //video.appendChild(source2);
 }
-
-   
 
 // Open our database; it is created if it doesn't already exist
 // (see upgradeneeded below)
@@ -272,9 +263,6 @@ request.addEventListener('upgradeneeded', e => {
 
   console.log('Database setup complete');
 });
-
- }
-logJSONData()
 
 // Register service worker to control making site work offline
 if('serviceWorker' in navigator) {
