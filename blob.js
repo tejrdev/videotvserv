@@ -94,8 +94,8 @@ function initVideoElement(video){
 
     function togglePlay() {
       videoObjects[0].autoplay = true; 
-      videoObjects[0].controls = true; 
-      videoObjects[1].controls = true; 
+      //videoObjects[0].controls = true; 
+      //videoObjects[1].controls = true; 
       if (video.paused || video.ended) {
         video.play();
         this.style.display="none"
