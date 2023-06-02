@@ -62,16 +62,14 @@ videoContainer.appendChild(videoObjects[0]);
 videoObjects[1].style.display = 'none';
 videoContainer.appendChild(videoObjects[1]);
 
-        //console.log(vidSourcesurl)
-function initVideoElement(video)
-{
+        console.log(vidSourcesurl)
+function initVideoElement(video){
     video.playsinline = true;
     video.muted = false;
     video.preload = 'auto'; //but do not set autoplay, because it deletes preload
 
     //loadedmetadata is wrong because if we use it then we get endless loop
-    video.onplaying = function(e)
-    {
+    video.onplaying = function(e){
         output.innerHTML = 'Current video source index: ' + nextActiveVideo;
 
         //select next index. If is equal vidSources.length then it is 0
@@ -96,6 +94,8 @@ function initVideoElement(video)
 
     function togglePlay() {
       videoObjects[0].autoplay = true; 
+      videoObjects[0].controls = true; 
+      videoObjects[1].controls = true; 
       if (video.paused || video.ended) {
         video.play();
         this.style.display="none"
